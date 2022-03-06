@@ -3,15 +3,24 @@ const express = require('express')
 const app = express();
 
 const fs = require('fs');
+const hb = require('handlebars');
 
 const server = http.createServer(app);
 
 const {exec} = require('child_process');
 
 const latex = require('node-latex');
-const input = fs.createReadStream('./aux_files/test.tex');
+const input = fs.readFileSync('./aux_files/test-template.tex');
+
+console.log(input)
+
+const temp = hb.compile(input.toString());
+const contents = temp({number: '8675309'});
+
+console.log(contents)
+
 const output = fs.createWriteStream('./aux_files/output.pdf');
-const pdf = latex(input)
+const pdf = latex(contents)
 pdf.pipe(output)
 pdf.on('error', err => console.error(err))
 pdf.on('finish', () => console.log('PDF generated!'))
