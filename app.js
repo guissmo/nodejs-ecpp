@@ -9,22 +9,6 @@ const server = http.createServer(app);
 
 const pari = require('./util/pari')
 
-// const latex = require('node-latex');
-// const input = fs.readFileSync('./aux_files/test-template.tex');
-
-// console.log(input)
-
-// const temp = hb.compile(input.toString());
-// const contents = temp({number: '8675309'});
-
-// console.log(contents)
-
-// const output = fs.createWriteStream('./aux_files/output.pdf');
-// const pdf = latex(contents)
-// pdf.pipe(output)
-// pdf.on('error', err => console.error(err))
-// pdf.on('finish', () => console.log('PDF generated!'))
-
 pari.primalityCertificate("10^35+69")
 
 app.use('/', (req, res, next) => {
