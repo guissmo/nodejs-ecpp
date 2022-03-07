@@ -6,8 +6,12 @@ const util = require('util');
 const exec = util.promisify(require('child_process').exec);
 
 const latex = require('node-latex');
-const input = fs.readFileSync('./tex-templates/test-template.tex');
-const temp = hb.compile(input.toString());
+// const input = fs.readFileSync('./tex-templates/test-template.tex');
+
+const texHead = hb.compile(fs.readFileSync('./tex-templates/template-head.tex').toString());
+const texBody = hb.compile(fs.readFileSync('./tex-templates/template-body.tex').toString());
+const texLast = hb.compile(fs.readFileSync('./tex-templates/template-last.tex').toString());
+const texFoot = hb.compile(fs.readFileSync('./tex-templates/template-foot.tex').toString());
 
 const fsWriteFileSync = util.promisify(fs.writeFileSync);
 const fsReadFileSync = util.promisify(fs.readFileSync);
