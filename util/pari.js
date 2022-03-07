@@ -6,7 +6,7 @@ const util = require('util');
 const exec = util.promisify(require('child_process').exec);
 
 const latex = require('node-latex');
-const input = fs.readFileSync('./aux_files/test-template.tex');
+const input = fs.readFileSync('./tex-templates/test-template.tex');
 const temp = hb.compile(input.toString());
 
 const fsWriteFileSync = util.promisify(fs.writeFileSync);

@@ -1,0 +1,96 @@
+\documentclass[12pt]{extarticle}
+\usepackage[a4paper,margin=1cm,landscape]{geometry}
+\usepackage{amsmath,amsfonts,amsthm}
+\usepackage{yfonts}
+\usepackage{multicol}
+\newtheorem*{theorem*}{Theorem}
+
+\begin{document}
+
+\pagestyle{empty}
+\phantom{a}
+\vspace{2em}
+
+\begin{center}
+{\Huge \textswab{Elliptic Curve Primality Certificate}}
+\end{center}
+\vspace{2em}
+
+\noindent The data on this document certify that the integer
+{\tiny
+$$
+N_i = 100000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000357
+$$
+}
+is prime.
+
+\vspace{2em}
+
+\noindent Let
+{\tiny
+\begin{align*}
+t_i &= -6335690348716994918932242186057948474880629656108384289423904111380661760519593422164718353551013546 \\
+m_i &= 100000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000006335690348716994918932242186057948474880629656108384289423904111380661760519593422164718353551013904 \\
+q_i &= 14616632993699094162507891380058198495648538004496690299373700685154450715955716817649278133162088703122322814363862903483990860047189573613364053330927160117454315740969674181 \\
+a_i &= 742580496550080607301795852133863423447302108610088840541033406366029222414744029030205121525412568293003434360165896475777951425449738125423441762238777452927677115048107566568577487 \\
+b_i &= 1244074607712934278685381241414156546795108627530352100151952872636668366179160248716430337960822609302325007479659899041931633334788668616204816432324851439289101814794336911238759356] \\
+x_i &= 2389145556148665678916057714207112323377 \\
+y_i &= 4264258559838594209405226291714746271826.
+\end{align*}
+}
+
+\vspace{0.5em}
+\hrule
+\vspace{0.5em}
+
+\begin{multicols}{3}
+\noindent One can verify that
+\begin{itemize}
+\item $N_i$ is a positive integer,
+\item $t_i$ is an integer such that $t_i^2 < 4N_i$,
+\item $q_i > (N_i^{1/4} + 1)^2)$,
+\item $q_i$ is prime (see next page for its certificate)
+\item The point $P = (x_i, y_i)$ on the elliptic curve $E: y^2 = x^3 + a_ix + b_i$ over $\mathbb{Z}/{N_i}\mathbb{Z}$ satisfies $m_iP = \infty$ and $(m_i/q_i)P \neq \infty$.
+\end{itemize}
+\columnbreak
+\noindent We can use the following theorem:
+\begin{theorem*}
+Let $N$ be a positive integer such that there exists:
+\begin{itemize}
+\item an integer $t$ that $t^2 < 4N$,
+\item a prime number $q > (N^{1/4} + 1)^2)$,
+\item an $E: y^2 = x^3 + ax + b$ over $\mathbb{Z}/{N}\mathbb{Z}$ with a point $P$ satisfying $mP = \infty$ and $(m/q)P \neq \infty$.
+\end{itemize}
+\end{theorem*}
+\noindent to prove that $N_i$ is prime.
+
+\columnbreak
+
+aaa
+\end{multicols}
+
+\newpage
+
+
+\pagestyle{empty}
+\phantom{a}
+\vspace{2em}
+
+\begin{center}
+{\Huge \textswab{Elliptic Curve Primality Certificate}}
+\end{center}
+\vspace{2em}
+
+\noindent The integer
+{\Huge
+$$
+N_i = 33743830764501150277
+$$
+}
+is less than $2^{64}$, has no prime divisors less than $102$ and is a Baillie-Pomerance-Selfridge-Wagstaff pseudoprime.
+
+\vspace{2em}
+\noindent Since all such pseudoprimes less than $2^{64}$ are verified to be prime, then $N_i$ is prime.
+
+
+\end{document}
