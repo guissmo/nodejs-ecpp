@@ -7,9 +7,9 @@ const hb = require('handlebars');
 
 const server = http.createServer(app);
 
-const pari = require('./util/pari')
+const pari = require('./util/pari');
 
-pari.primalityCertificate("10^35+69")
+pari.primalityCertificate("1000000000000000000000000000000000000000000000000000000000000000000009")
 
 app.use('/', (req, res, next) => {
     res.send("Hello world...")
