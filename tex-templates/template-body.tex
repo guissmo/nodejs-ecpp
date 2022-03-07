@@ -1,0 +1,63 @@
+\pagestyle{empty}
+\phantom{a}
+\vspace{2em}
+
+\begin{center}
+{\Huge \textswab{Elliptic Curve Primality Certificate}}
+\end{center}
+\vspace{2em}
+
+\noindent The data on this document certify that the integer
+{\tiny
+$$
+N_{ {{ i }} } = {{ Ni }}
+$$
+}
+is prime.
+
+\vspace{2em}
+
+\noindent Let
+{\tiny
+\begin{align*}
+t_{ {{ i }} } &= {{ ti }} \\
+m_{ {{ i }} } &= {{ mi }} \\
+q_{ {{ i }} } &= {{ qi }} \\
+a_{ {{ i }} } &= {{ ai }} \\
+b_{ {{ i }} } &= {{ bi }} \\
+x_{ {{ i }} } &= {{ xi }} \\
+y_{ {{ i }} } &= {{ yi }}.
+\end{align*}
+}
+
+\vspace{0.5em}
+\hrule
+\vspace{0.5em}
+
+\begin{multicols}{3}
+\noindent One can verify that
+\begin{itemize}
+\item $N_{ {{ i }} }$ is a positive integer,
+\item $t_{ {{ i }} }$ is an integer such that $t_{ {{ i }} }^2 < 4N_{ {{ i }} }$,
+\item $q_{ {{ i }} } > \left(N_{ {{ i }} }^{1/4} + 1)^2\right)$,
+\item $q_{ {{ i }} }$ is prime (see next page), and that
+\item the point $P = (x_{ {{ i }} }, y_{ {{ i }} })$ on the elliptic curve $E: y^2 = x^3 + a_{ {{ i }} }x + b_{ {{ i }} }$ over $\mathbb{Z}/{N_{ {{ i }} }}\mathbb{Z}$ satisfies $m_{ {{ i }} }P = \infty$ and $(m_{ {{ i }} }/q_{ {{ i }} })P \neq \infty$.
+\end{itemize}
+\columnbreak
+\noindent We can use the following theorem:
+\begin{theorem*}
+Let $N$ be a positive integer such that there exists:
+\begin{itemize}
+\item an integer $t$ that $t^2 < 4N$,
+\item a prime number $q > (N^{1/4} + 1)^2)$,
+\item an $E: y^2 = x^3 + ax + b$ over $\mathbb{Z}/{N}\mathbb{Z}$ with a point $P$ satisfying $mP = \infty$ and $(m/q)P \neq \infty$.
+\end{itemize}
+\end{theorem*}
+\noindent to prove that $N_{ {{ i }} }$ is prime.
+
+\columnbreak
+
+aaa
+\end{multicols}
+
+\newpage

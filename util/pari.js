@@ -23,18 +23,35 @@ async function primalityCertificate(integer) {
         );
     await exec('gp -fq ./aux_files/script.gp');
     const ret = fs.readFileSync('./aux_files/cert.txt').toString();
-    console.log( JSON.parse(ret) )
-    // const contents = temp({data: [{
-    //     number: 69,
-    //     string: "Hey"
-    // }]});
+    
+    const cert = JSON.parse(ret);
+    
+    let texCode = texHead({});
+    for(let c in cert){
+        const [i, Ni, ti, mi, qi, ai, bi, xi, yi] = cert[c];
+        texCode += texBody({
+            i: i,
+            Ni: Ni,
+            ti: ti,
+            mi: mi,
+            qi: qi,
+            ai: ai,
+            bi: bi,
+            xi: xi,
+            yi, yi
+        })
+    }
+    texCode += texLast({
+        i: cert.length,
+        qi: cert[cert.length-1][4]
+    })
+    texCode += texFoot({});
 
-    // console.log(contents)
-    // const output = fs.createWriteStream('./aux_files/output.pdf');
-    // const pdf = latex(contents)
-    // pdf.pipe(output)
-    // pdf.on('error', err => console.error(err))
-    // pdf.on('finish', () => console.log('PDF generated!'))
+    const output = fs.createWriteStream('./aux_files/output.pdf');
+    const pdf = latex(texCode)
+    pdf.pipe(output)
+    pdf.on('error', err => console.error(err))
+    pdf.on('finish', () => console.log('PDF generated!'))
 
 }
 
