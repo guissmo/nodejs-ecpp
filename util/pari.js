@@ -19,7 +19,7 @@ const fsReadFileSync = util.promisify(fs.readFileSync);
 async function primalityCertificate(integer, ngalan, filename) {
     await fs.writeFileSync(
         './aux_files/script.gp',
-        `F=fileopen("./aux_files/cert.txt","w");N=primecert(${ integer });ret=if(type(N)=="t_INT",if(N==0, concat("C",Str(factor(${ integer },10^6))), Str(N)),vector(#N,i, apply( x->Str(x), [i, N[i][1],N[i][2], N[i][1]+1-N[i][2], (N[i][1]+1-N[i][2])/N[i][3], N[i][4], (N[i][5][2]^2-N[i][5][1]^3-N[i][4]*N[i][5][1])%N[i][1], N[i][5][1], N[i][5][2] ])));filewrite(F, ret);fileclose(F);quit()`,
+        `default("parisizemax",4G);\nfor(i=1,10^7,1+1);F=fileopen("./aux_files/cert.txt","w");N=primecert(${ integer });ret=if(type(N)=="t_INT",if(N==0, concat("C",Str(factor(${ integer },10^6))), Str(N)),vector(#N,i, apply( x->Str(x), [i, N[i][1],N[i][2], N[i][1]+1-N[i][2], (N[i][1]+1-N[i][2])/N[i][3], N[i][4], (N[i][5][2]^2-N[i][5][1]^3-N[i][4]*N[i][5][1])%N[i][1], N[i][5][1], N[i][5][2] ])));filewrite(F, ret);fileclose(F);quit()`,
         );
     await exec('gp -fq ./aux_files/script.gp');
 
@@ -37,6 +37,19 @@ async function primalityCertificate(integer, ngalan, filename) {
             if( !first ){
                 hence = "";
             }
+            let sizeForThis = '\\tiny\\vspace{0.2em}';
+            if( Ni.length < 160){
+                sizeForThis = '\\footnotesize\\vspace{-0.6em}'
+            }
+            if( Ni.length < 120){
+                sizeForThis = '\\normalsize\\vspace{-0.9em}'
+            }
+            if( Ni.length < 80){
+                sizeForThis = '\\Large\\vspace{-1.3em}'
+            }
+            if( Ni.length < 40){
+                sizeForThis = '\\Huge\\vspace{-1.6em}'
+            }
             texCode += texBody({
                 i: i,
                 Ni: Ni,
@@ -46,7 +59,8 @@ async function primalityCertificate(integer, ngalan, filename) {
                 ai: ai,
                 bi: bi,
                 xi: xi,
-                yi, yi,
+                yi: yi,
+                size: sizeForThis,
                 henceforth: hence
             });
             first = false;

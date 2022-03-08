@@ -46,7 +46,23 @@ app.post('/generate-pdf', (req, res, next) => {
     if(nameArray === null || numbArray === null || nameArray.length != 1 || numbArray.length != 1 || nameArray[0] != req.body.name || numbArray[0] != req.body.number){
         res.status(200).json({
             error: 1,
-            message: "Invalid input. Try again."
+            message: `Your input is invalid.<br><br>Please check that the integer you entered only consists of numbers, and the name you entered only consists of letters, numbers and spaces.`
+        })
+        return;
+    }
+
+    if(req.body.number.length > 202){
+        res.status(200).json({
+            error: 1,
+            message: `That number is too big and will introduce a lot of bad boxes on the certificate. Maybe we'll support it in the future! For now, try a number with like 200 decimal digits.`
+        })
+        return;
+    }
+
+    if(req.body.name.length > 100){
+        res.status(200).json({
+            error: 1,
+            message: `That name is quite a mouthful! Maybe try a shorter name?`
         })
         return;
     }
