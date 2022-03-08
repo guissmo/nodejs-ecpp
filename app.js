@@ -33,13 +33,42 @@ app.post('/generate-pdf', (req, res, next) => {
     
     const filename = Math.floor(Math.random()*10000)
 
+    const regexAlphaNumericSpace = /[A-Za-z0-9 ]+/g;
+    const regexStrictlyNumeric = /[0-9]+/g;
+    const nameArray = req.body.name.match(regexAlphaNumericSpace);
+    const numbArray = req.body.number.match(regexStrictlyNumeric);
+
+    console.log(nameArray)
+    console.log(numbArray)
+    console.log(req.body.name)
+    console.log(req.body.number)
+
+    if(nameArray === null || numbArray === null || nameArray.length != 1 || numbArray.length != 1 || nameArray[0] != req.body.name || numbArray[0] != req.body.number){
+        res.status(200).json({
+            error: 1,
+            message: "Invalid input. Try again."
+        })
+        return;
+    }
+
+    if(req.body.number == "57"){
+        res.status(200).json({
+            error: 0,
+            special: 1,
+            message: "I'm sorry, this number has already been named after Grothendieck!"
+        })
+        return;
+    }
+
     pari.primalityCertificate(req.body.number, req.body.name, filename)
     const watch = fs.watch('./aux_files/', (et, fn) => {
         console.log(et)
         console.log(fn)
         if(fn === filename+'.pdf'){
             res.status(200).json({
+                error: 0,
                 isBigPrime: 1,
+                special: 0,
                 name: req.body.name,
                 number: req.body.number,
                 filename: filename
@@ -48,8 +77,10 @@ app.post('/generate-pdf', (req, res, next) => {
         }
         if(fn === `composite${ req.body.number }.txt`){
             res.status(200).json({
+                error: 0,
                 isBigPrime: 0,
                 isPrime: 0,
+                special: 0,
                 name: req.body.name,
                 number: req.body.number
             })
@@ -57,7 +88,9 @@ app.post('/generate-pdf', (req, res, next) => {
         }
         if(fn === `smallPrime${ req.body.number }.txt`){
             res.status(200).json({
+                error: 0,
                 isBigPrime: 0,
+                special: 0,
                 isPrime: 1,
                 name: req.body.name,
                 number: req.body.number
