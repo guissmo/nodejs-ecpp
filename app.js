@@ -18,6 +18,7 @@ app.set('view engine', 'hbs')
 app.set('views', 'views')
 
 app.use('/lala', express.static(path.join(__dirname, './aux_files')));
+app.use('/public', express.static(path.join(__dirname, './public')));
 
 app.use(bodyParser.urlencoded({
     extended: true
@@ -36,7 +37,7 @@ app.post('/generate-pdf', (req, res, next) => {
         console.log(et)
         console.log(fn)
         if(fn === filename+'.pdf'){
-            res.render('home', {
+            res.status(200).json({
                 name: req.body.name,
                 number: req.body.number,
                 filename: filename
