@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Example App</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Oxygen+Mono&family=Roboto:wght@300;400;500;700;900&display=swap" rel="stylesheet"> 
+
+    <style>
+      body {
+        background-color: black;
+        color: whitesmoke;
+        font-weight: 300;
+      }
+
+      .bigweight {
+        font-weight: 700;
+      }
+
+      .txt-rotate{
+        font-family: 'Roboto', sans-serif;
+        font-weight: 900;
+      }
+
+      h1 {
+        font-family: 'Roboto', sans-serif;
+        font-weight: 300;
+        font-size: 60px;
+      }
+
+      h2 {
+        font-family: 'Roboto', sans-serif;
+        font-weight: 300;
+        font-size: 30px;
+        color: rgb(255, 255, 180);
+      }
+
+      input {
+        width: 700px;
+      }
+
+      input, button {
+        font-family: 'Roboto', sans-serif;
+        font-size: 30px;
+        background-color: black;
+        border-color: white;
+        border-style: solid;
+        border-width: 1;
+        border-top-width: 0;
+        border-left-width: 0;
+        border-right-width: 0;
+        margin-bottom: 20px;
+        color: rgb(194, 194, 194)
+      }
+
+      span.big {
+        margin-top: 0;
+        margin-bottom: 5px;
+        font-family: 'Roboto', sans-serif;
+        font-size: 24px;
+        font-weight: 500;
+        color: rgb(147, 255, 255);
+      }
+
+      span.small {
+        margin-top: 0;
+        margin-bottom: 5px;
+        font-weight: 300;
+        font-family: 'Roboto', sans-serif;
+        font-size: 18px;
+        color: rgb(51, 126, 126);
+      }
+
+      button {
+        border-width: 1;
+        font-family: 'Roboto', sans-serif;
+      }
+
+      #result{
+        margin-top: 30px;
+        font-family: 'Roboto', sans-serif;
+        font-size: 30px;
+        background-color: black;
+        border-color: white;
+        color: rgb(135, 255, 135);
+      }
+
+      #result a{
+        color: rgb(150, 150, 255)
+      }
+    </style>
+</head>
+
+<body>
+
+<h1>The <span
+     class="txt-rotate"
+     data-period="1000"
+     data-rotate='[ "Optimus", "Amazon", "Central European", "One Moment In", "Peanut Butter Jelly" ]'></span>&nbsp;prime.
+</h1>
+<h2>Don't let the <span class="bigweight">good primes</span> roll...<br><span class="bigweight">Name</span> and <span class="bigweight">own</span> your favorite prime today!</h2>
+<br>
+<p><span class="big">Enter your favorite prime here!</span><br><span class="small">Leave blank for a random prime.<br>Note: Must be greater than 2<sup>64</sup>.</span></p>
+<input name="number" type="text" placeholder="Enter your prime here (or leave blank for random)..."></input><br>
+<br>
+<p><span class="big">Give it a name!</span><br><span class="small"> Be creative!</span></p>
+<input name="name" type="text" placeholder="Enter your prime's name here..."></input><br>
+<br>
+<button type="submit" onClick="generateButton(this)">Submit</button>
+<script src="/public/main.js"></script>
+<div id="result">Your thing can be downloaded <a href="">here</a>.</div>
+
+</body>
+</html><script>

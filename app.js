@@ -30,8 +30,10 @@ app.get('/', (req, res, next) => {
 })
 
 app.post('/generate-pdf', (req, res, next) => {
+    
     const filename = Math.floor(Math.random()*10000)
-    pari.primalityCertificate(req.body.number, filename)
+
+    pari.primalityCertificate(req.body.number, req.body.name, filename)
     const watch = fs.watch('./aux_files/', (et, fn) => {
         console.log(et)
         console.log(fn)
@@ -47,14 +49,18 @@ app.post('/generate-pdf', (req, res, next) => {
         if(fn === `composite${ req.body.number }.txt`){
             res.status(200).json({
                 isBigPrime: 0,
-                message: `The integer ${ req.body.number } is not prime!`
+                isPrime: 0,
+                name: req.body.name,
+                number: req.body.number
             })
             watch.close()
         }
         if(fn === `smallPrime${ req.body.number }.txt`){
             res.status(200).json({
                 isBigPrime: 0,
-                message: `The integer ${ req.body.number } is a prime less than 18446744073709551616.`
+                isPrime: 1,
+                name: req.body.name,
+                number: req.body.number
             })
             watch.close()
         }

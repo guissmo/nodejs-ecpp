@@ -16,7 +16,7 @@ const texFoot = hb.compile(fs.readFileSync('./tex-templates/template-foot.tex').
 const fsWriteFileSync = util.promisify(fs.writeFileSync);
 const fsReadFileSync = util.promisify(fs.readFileSync);
 
-async function primalityCertificate(integer, filename) {
+async function primalityCertificate(integer, ngalan, filename) {
     await fs.writeFileSync(
         './aux_files/script.gp',
         `F=fileopen("./aux_files/cert.txt","w");N=primecert(${ integer });ret=if(type(N)=="t_INT",if(N==0, concat("C",Str(factor(${ integer },10^6))), Str(N)),vector(#N,i, apply( x->Str(x), [i, N[i][1],N[i][2], N[i][1]+1-N[i][2], (N[i][1]+1-N[i][2])/N[i][3], N[i][4], (N[i][5][2]^2-N[i][5][1]^3-N[i][4]*N[i][5][1])%N[i][1], N[i][5][1], N[i][5][2] ])));filewrite(F, ret);fileclose(F);quit()`,
@@ -30,8 +30,13 @@ async function primalityCertificate(integer, filename) {
     if(ret[0] == '[') {
         const cert = JSON.parse(ret);
         let texCode = texHead({});
+        first = true;
         for(let c in cert){
             const [i, Ni, ti, mi, qi, ai, bi, xi, yi] = cert[c];
+            let hence = `It will henceforth be known as \\textbf{The ${ ngalan } Prime}.`;
+            if( !first ){
+                hence = "";
+            }
             texCode += texBody({
                 i: i,
                 Ni: Ni,
@@ -41,8 +46,10 @@ async function primalityCertificate(integer, filename) {
                 ai: ai,
                 bi: bi,
                 xi: xi,
-                yi, yi
-            })
+                yi, yi,
+                henceforth: hence
+            });
+            first = false;
         }
         texCode += texLast({
             i: cert.length,

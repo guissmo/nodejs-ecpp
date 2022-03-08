@@ -1,5 +1,16 @@
-<input name="name" type="text"></input>
-<input name="number" type="text"></input>
-<button type="submit" onClick="generateButton(this)">Submit</button>
-<script src="/public/main.js"></script>
-<div id="result"></div>
+<h1>The <span
+     class="txt-rotate"
+     data-period="1000"
+     data-rotate='[ "Optimus", "Once Upon A", "Amazon", "Central European", "Hit Me Baby One More", "One Moment In", "Peanut Butter Jelly" ]'></span>&nbsp;prime.
+</h1>
+<h2>Don't let the <span class="bigweight">good primes</span> roll...<br>&nbsp;&nbsp;...<span class="bigweight">name</span> your favorite prime...<br>&nbsp;&nbsp;&nbsp;&nbsp;...and <span class="bigweight">own</span> a copy of its primality certificate.</h2>
+<br>
+<p><span class="big">Enter your favorite prime...</span><br><span class="small">Leave blank for a random prime.<br>Note: Must be greater than 2<sup>64</sup>.</span></p>
+<input name="number" type="text" placeholder="...here!"></input><br>
+<br>
+<p><span class="big">Give it a name...</span><br><span class="small"> Be creative!</span></p>
+<input name="name" type="text" placeholder="...and write it here!"></input><br>
+<br>
+<button type="button" onClick="generateButton(this)">Submit</button>
+<script src="./public/main.js"></script>
+<div id="result" class="good">Your thing can be downloaded <a href="#">here</a>.</div>
