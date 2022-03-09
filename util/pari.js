@@ -56,7 +56,7 @@ const fsReadFileSync = util.promisify(fs.readFileSync);
 
 async function primalityCertificate(integer, ngalan, filename) {
     await fs.writeFileSync(
-        './aux_files/script.gp',
+        `${ join(auxFilesDir, 'script.gp')}`,
         `default("parisizemax",1G);\nF=fileopen("${ join(auxFilesDir, 'cert.txt') }","w");N=primecert(${ integer });ret=if(type(N)=="t_INT",if(N==0, concat("C",Str(factor(${ integer },10^6))), Str(N)),vector(#N,i, apply( x->Str(x), [i, N[i][1],N[i][2], N[i][1]+1-N[i][2], (N[i][1]+1-N[i][2])/N[i][3], N[i][4], (N[i][5][2]^2-N[i][5][1]^3-N[i][4]*N[i][5][1])%N[i][1], N[i][5][1], N[i][5][2] ])));filewrite(F, ret);fileclose(F);quit()`,
         );
     await exec(`gp -fq ${ join(auxFilesDir, 'script.gp') }`);
