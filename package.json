@@ -1,5 +1,5 @@
 {
-  "name": "experiment",
+  "name": "nodejs-ecpp",
   "version": "1.0.0",
   "description": "Experiment",
   "main": "app.js",
