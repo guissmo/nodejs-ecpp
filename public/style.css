@@ -91,3 +91,21 @@ button {
 #result a{
   color: rgb(150, 150, 255)
 }
+
+.shameless-plug, .prime-suggestions {
+  margin-top: 30px;
+  font-family: 'Roboto', sans-serif;
+  font-size: 30px;
+}
+
+.shameless-plug {
+  color: rgb(66, 255, 41);
+}
+
+.prime-suggestions {
+  color: rgb(0, 209, 216);
+}
+
+.shameless-plug a{
+  color: rgb(150, 230, 118);
+}
